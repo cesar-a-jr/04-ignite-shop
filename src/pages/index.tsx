@@ -26,16 +26,21 @@ export default function Home({ products }: HomeProps) {
   });
   return (
     <HomeContainer ref={sliderRef} className="keen-slider">
-      {products.map(product => {
-        return(
-        <Product key={product.id} className="keen-slider__slide">
-          <Image src={product.imageUrl} alt="" width={520} height={480} />
-          <footer>
-            <strong>{product.name}</strong>
-            <span>{product.price}</span>
-          </footer>
-        </Product>
-        )
+      {products.map((product) => {
+        return (
+          <Product key={product.id} className="keen-slider__slide">
+            <Image src={product.imageUrl} alt="" width={520} height={480} />
+            <footer>
+              <strong>{product.name}</strong>
+              <span>
+                {new Intl.NumberFormat("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(product.price)}
+              </span>
+            </footer>
+          </Product>
+        );
       })}
     </HomeContainer>
   );
@@ -46,20 +51,20 @@ export const getStaticProps: GetStaticProps = async () => {
     expand: ["data.default_price"],
   });
   const products = response.data.map((product) => {
-    const price = product.default_price as Stripe.Price
+    const price = product.default_price as Stripe.Price;
 
     return {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: price.unit_amount
+      price: price.unit_amount,
     };
   });
 
   return {
-    props:{
+    props: {
       products,
     },
-    revalidate: 60 * 60 * 2
+    revalidate: 60 * 60 * 2,
   };
 };
