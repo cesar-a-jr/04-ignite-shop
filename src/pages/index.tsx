@@ -36,7 +36,7 @@ export default function Home({ products }: HomeProps) {
                 {new Intl.NumberFormat("pt-BR", {
                   style: "currency",
                   currency: "BRL",
-                }).format(product.price)}
+                }).format(product.price /100)}
               </span>
             </footer>
           </Product>
