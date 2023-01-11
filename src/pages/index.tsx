@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useKeenSlider } from "keen-slider/react";
-
+import Link from "next/link";
 import { HomeContainer, Product } from "../styles/pages/home";
 
 import "keen-slider/keen-slider.min.css";
@@ -28,7 +28,10 @@ export default function Home({ products }: HomeProps) {
     <HomeContainer ref={sliderRef} className="keen-slider">
       {products.map((product) => {
         return (
-          <Product key={product.id} className="keen-slider__slide">
+          <Link  href={`/product/${product.id}`}key={product.id} prefetch={false}>
+          <Product
+            className="keen-slider__slide"
+          >
             <Image src={product.imageUrl} alt="" width={520} height={480} />
             <footer>
               <strong>{product.name}</strong>
@@ -36,10 +39,11 @@ export default function Home({ products }: HomeProps) {
                 {new Intl.NumberFormat("pt-BR", {
                   style: "currency",
                   currency: "BRL",
-                }).format(product.price /100)}
+                }).format(product.price / 100)}
               </span>
             </footer>
           </Product>
+          </Link>
         );
       })}
     </HomeContainer>
