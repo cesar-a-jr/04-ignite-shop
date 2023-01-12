@@ -12,6 +12,7 @@
     "@next/font": "13.1.1",
     "@stitches/react": "^1.2.8",
     "@types/react-dom": "18.0.10",
+    "axios": "^1.2.2",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
     "keen-slider": "^6.8.5",
