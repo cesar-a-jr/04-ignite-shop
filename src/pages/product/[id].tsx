@@ -67,7 +67,10 @@ export default function Product({product}: ProducProps){
 
       <ProductDetails>
         <h1>{product.name}</h1>
-        <span>{product.price}</span>
+        <span>{new Intl.NumberFormat("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(product.price / 100)}</span>
 
         <p>{product.description}</p>
 
