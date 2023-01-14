@@ -33,6 +33,7 @@ export default function Home({ products }: HomeProps) {
             className="keen-slider__slide"
           >
             <Image src={product.imageUrl} alt="" width={520} height={480} />
+
             <footer>
               <strong>{product.name}</strong>
               <span>
@@ -50,7 +51,7 @@ export default function Home({ products }: HomeProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<any> = async () => {
   const response = await stripe.products.list({
     expand: ["data.default_price"],
   });
