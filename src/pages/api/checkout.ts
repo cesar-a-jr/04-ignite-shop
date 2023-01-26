@@ -8,7 +8,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse){
     return res.status(400).json({error: 'Price Not Found.'})
   }
 
-  const successURL = `http://localhost:3000/success`
+  const successURL = `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}`
   const cancelURL =  `http://localhost:3000/dsa`
 
   const checkoutSession = await stripe.checkout.sessions.create({
