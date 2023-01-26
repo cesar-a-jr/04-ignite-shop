@@ -9,12 +9,13 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse){
   }
 
   const successURL = `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}`
-  const cancelURL =  `http://localhost:3000/dsa`
+  const cancelURL =  `http://localhost:3000/`
 
   const checkoutSession = await stripe.checkout.sessions.create({
     success_url:successURL,
     cancel_url: cancelURL,
     mode: 'payment',
+    shipping_address_collection: {allowed_countries: ['BR']},
     line_items:[
       {
         price: priceID,
